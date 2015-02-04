@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>parser</artifactId>
     <packaging>bundle</packaging>
-    <version>3.0.0</version>
+    <version>3.0.1-SNAPSHOT</version>
     <name>VCH Parser Interface</name>
     <description>The parser interface for all web parsers.</description>
 
@@ -20,18 +20,21 @@
             <artifactId>httpclient</artifactId>
             <type>bundle</type>
             <scope>provided</scope>
+            <version>[1.0.0,2.0.0)</version>
         </dependency>
         <dependency>
             <groupId>de.berlios.vch</groupId>
             <artifactId>i18n</artifactId>
             <type>bundle</type>
             <scope>provided</scope>
+            <version>[1.0.0,2.0.0)</version>
         </dependency>
         <dependency>
             <groupId>de.berlios.vch</groupId>
             <artifactId>net</artifactId>
             <type>bundle</type>
             <scope>provided</scope>
+            <version>[1.0.0,2.0.0)</version>
         </dependency>
         <dependency>
             <groupId>org.apache.felix</groupId>
@@ -41,6 +44,7 @@
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
@@ -52,7 +56,6 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Import-Package>!javax.swing.*,*</Import-Package>
                         <Export-Package>de.berlios.vch.parser.*,org.jsoup.*</Export-Package>
                     </instructions>
                 </configuration>
