@@ -1,12 +1,30 @@
 package de.berlios.vch.parser;
 
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 public class XmlParserUtils {
+
+    public static Document parse(String xml) throws ParserConfigurationException, SAXException, IOException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        return builder.parse(new InputSource(new StringReader(xml)));
+    }
+
     public static Node getFirstElementByTagName(Document doc, String tagName) {
         NodeList list = doc.getElementsByTagName(tagName);
         if (list.getLength() > 0) {
@@ -69,5 +87,15 @@ public class XmlParserUtils {
                 getElementsByTagName(child, tagName, result);
             }
         }
+    }
+
+    public static String getString(String xml, String xpath) throws XPathExpressionException {
+        XPath xp = XPathFactory.newInstance().newXPath();
+        return xp.evaluate(xpath, new InputSource(new StringReader(xml)));
+    }
+
+    public static String getString(Node node, String xpath) throws XPathExpressionException {
+        XPath xp = XPathFactory.newInstance().newXPath();
+        return xp.evaluate(xpath, node);
     }
 }
