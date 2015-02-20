@@ -8,6 +8,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
@@ -89,13 +90,28 @@ public class XmlParserUtils {
         }
     }
 
-    public static String getString(String xml, String xpath) throws XPathExpressionException {
+    public static String getStringWithXpath(String xml, String xpath) throws XPathExpressionException {
         XPath xp = XPathFactory.newInstance().newXPath();
         return xp.evaluate(xpath, new InputSource(new StringReader(xml)));
     }
 
-    public static String getString(Node node, String xpath) throws XPathExpressionException {
+    public static String getStringWithXpath(Node node, String xpath) throws XPathExpressionException {
         XPath xp = XPathFactory.newInstance().newXPath();
         return xp.evaluate(xpath, node);
+    }
+
+    public static Node getNodeWithXpath(String xml, String xpath) throws XPathExpressionException {
+        XPath xp = XPathFactory.newInstance().newXPath();
+        return (Node) xp.evaluate(xpath, new InputSource(new StringReader(xml)), XPathConstants.NODE);
+    }
+
+    public static Node getNodeWithXpath(Node node, String xpath) throws XPathExpressionException {
+        XPath xp = XPathFactory.newInstance().newXPath();
+        return (Node) xp.evaluate(xpath, node, XPathConstants.NODE);
+    }
+
+    public static NodeList getNodeListWithXpath(String xml, String xpath) throws XPathExpressionException {
+        XPath xp = XPathFactory.newInstance().newXPath();
+        return (NodeList) xp.evaluate(xpath, new InputSource(new StringReader(xml)), XPathConstants.NODESET);
     }
 }
