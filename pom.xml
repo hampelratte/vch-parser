@@ -13,6 +13,12 @@
         <version>2</version>
         <relativePath>../vch-parent/pom.xml</relativePath>
     </parent>
+    
+    <scm>
+        <connection>scm:git:git@github.com/hampelratte/vch-parser.git</connection>
+        <developerConnection>scm:git:git@github.com:hampelratte/vch-parser.git</developerConnection>
+        <url>https://github.com/hampelratte/vch-parser.git</url>
+    </scm>
 
     <dependencies>
         <dependency>
